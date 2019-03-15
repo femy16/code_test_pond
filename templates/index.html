@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pond5 Test</title>
+</head>
+
+<body>
+    <h3>{{pong}}</h3>
+    <img src="{{mypic}}"></img>
+    {% for msgs in system %}
+
+    <p class="message">Operating System:<em>{{msgs.opt_system}}</em></p>
+    <p>Version:{{msgs.system_version}}</p>
+    {% endfor%} 
+    <!--{%for details in pic_details%}-->
+
+    <!--<p>{{details}}</p>-->
+    <!--{%endfor%}-->
+     {% for detls in pic_details%}
+    <p class="details"> Image filename : <em>{{detls.image_filename}}</em></p>
+    <p>Image title : {{detls.image_title}}</p>
+
+    <p>size : {{detls.size}}, dimension: {{detls.dimension}}</p>
+    {% endfor%}
+
+</body>
+
+</html>
