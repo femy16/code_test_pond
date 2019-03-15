@@ -1,0 +1,14 @@
+
+img{
+    max-width: 100%;
+}
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+.heading{
+    font-weight: 300;
+    font-family: 'Libre Baskerville', serif;
+    padding-top: 30px;
+}

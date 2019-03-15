@@ -16,33 +16,13 @@ stm=[{
 app = Flask(__name__)
 
 source=requests.get("https://www.pond5.com/photo/82831656/business-people-conversation-technology-hand.html").text
-# soup=BeautifulSoup(source,'lxml')
-# mydiv=soup.find('div',class_='p5_big_image')
-# mypic=mydiv.find('img')['src']
-# mypic_id=mypic.split('/')[3].split('-')[6]
-# print(mypic)
-# image_title_hedding=soup.find('h1',class_='Site-sectionHeadingAlt')
-# heading=image_title_hedding.find('span').text
-
-# for image_size_div in soup.find_all('div',class_='Arrange--gutter10px'):
-#     size=image_size_div.find('span',class_='u-textLineHeightMatch').text
-#     dimension = image_size_div.find('div',class_='u-textLineHeightMatch').text
-#     print(size)
-#     print(dimension)
-    
-
-    
-
-# image_dimension_div=soup.find('div',class_='Arrange-sizeFill')
-# dimension=soup.find('div',class_='u-textLineHeightMatch').text
-# print(dimension)
 
 def find_pic(source):
     soup=BeautifulSoup(source,'lxml')
     mydiv=soup.find('div',class_='p5_big_image')
-    mypic=mydiv.find('img')['src']
-    mypic_id=mypic.split('/')[3].split('-')[6]
-    return(mypic)
+    mypicture=mydiv.find('img')['src']
+    mypic_id=mypicture.split('/')[3].split('-')[6]
+    return(mypicture)
 # print(platform.platform())
 @app.route("/",methods=["GET"])
 def show_Image():
@@ -70,29 +50,29 @@ def media_details(id):
         image_title_hedding=soup.find('h1',class_='Site-sectionHeadingAlt')
         heading=image_title_hedding.find('span').text
         
-        pic_details=[
-        mypic_id,
-        heading,
-        ]
-        
+        pic_details=[{
+        "image_filename":mypic_id,
+        "image_title":heading,
+        }]
+        pic_size_dimensions=[]
         for image_size_div in soup.find_all('div',class_='Arrange--gutter10px'):
                 size=image_size_div.find('span',class_='u-textLineHeightMatch').text
                 dimension = image_size_div.find('div',class_='u-textLineHeightMatch').text
                 # print(dimension)
                 
-                # pic_details.append('size:'+size)
-                # pic_details.append('dimension:'+dimension)
-                pic_details[0]['size'] = size
-                pic_details[0]['dimension'] = dimension
+                pic_size_dimensions.append('Size: '+size)
+                pic_size_dimensions.append('Dimension: '+dimension)
+                # pic_details[0]['size'] = size
+                # pic_details[0]['dimension'] = dimension
                 
                 
-        print(pic_details)    
+        # print(pic_size_dimensions)    
     
        
+        # data=json.loads(pic_details)
         
         
-        
-        return render_template("index.html",mypic=mypic,pic_details=pic_details)
+        return render_template("index.html",mypic=mypic,pic_details=pic_details,pic_size_dimensions=pic_size_dimensions)
     else:
         return("Id out of range")
     
