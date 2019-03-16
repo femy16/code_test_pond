@@ -35,7 +35,9 @@ def ping_system(our_request):
         pong="Pong !!"
         return render_template("index.html",pong=pong)
     elif our_request=="system":
-        return render_template("index.html",system=stm)
+        system_obj=json.dumps(stm)
+        
+        return render_template("index.html",system=stm,systm_json_obj=system_obj)
     else:
         error_text="invalid request please try /ping , /system or /mediainfo/<id>"
         return render_template("index.html",error_text=error_text)
@@ -74,17 +76,15 @@ def media_details(id):
                 
                 pic_size_dimensions.append('Size: '+size)
                 pic_size_dimensions.append('Dimension: '+dimension)
-                # pic_details[0]['size'] = size
-                # pic_details[0]['dimension'] = dimension
                 
                 
-        # print(pic_size_dimensions)    
-    
-       
-        # data=json.loads(pic_details)
+        
+        image_details=pic_details+pic_size_dimensions
+        img_obj=json.dumps(image_details)
         
         
-        return render_template("index.html",mypic=mypic,pic_details=pic_details,pic_size_dimensions=pic_size_dimensions)
+        return render_template("index.html",mypic=mypic,pic_details=pic_details,pic_size_dimensions=pic_size_dimensions,image_json_obj=img_obj)
+
     else:
         error_text="Id out of range please try id from [ 82831656 , 96146608 , 88382724 , 85925701 , 21327480 ]"
         return render_template("index.html",error_text=error_text)

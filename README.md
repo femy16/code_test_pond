@@ -18,7 +18,7 @@ A live demo can be found [here](https://app-code-test.herokuapp.com/).
 I have done a very simple web page index.html, which is similar to Pond5 website with black background and white letters. I have done web scraping with the help of Beautifulsoup.
 I have scraped an image from Pond5 and displayed when the app is logged. When we request with mediainfo/<id> related image and its details wil be shown.
 I have added a list of image ids (ids=['82831656','96146608','88382724','85925701','21327480']), if requested with any of these ids we can see corresponding image and related details.
-if we check for ids other than these it will show errors.
+if we check for ids other than these it will show errors.GET /system and GET /mediainfo/<id> returns lists and json. the output is displayed in html page using lists.
 
 
 ### Features
