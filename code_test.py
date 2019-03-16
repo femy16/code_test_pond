@@ -8,7 +8,7 @@ import json
 # print(platform.sys.version);
 # print(platform.system())
 
-ids=['82831656','96146608','88382724','88382724']
+ids=['82831656','96146608','88382724','85925701','21327480']
 stm=[{
     "opt_system":platform.system(),
     "system_version":platform.sys.version
@@ -29,14 +29,26 @@ def show_Image():
      mypic=find_pic(source)
      return render_template("index.html",mypic=mypic)
      
-@app.route("/ping",methods=["GET"])
-def ping_pong():
-    pong="Pong"
-    return render_template("index.html",pong=pong)
+@app.route("/<our_request>",methods=["GET"])
+def ping_system(our_request):
+    if our_request=="ping":
+        pong="Pong !!"
+        return render_template("index.html",pong=pong)
+    elif our_request=="system":
+        return render_template("index.html",system=stm)
+    else:
+        error_text="invalid request please try /ping , /system or /mediainfo/<id>"
+        return render_template("index.html",error_text=error_text)
     
-@app.route("/system",methods=["GET"])
-def system_details():
-    return render_template("index.html",system=stm)
+     
+# @app.route("/ping",methods=["GET"])
+# def ping_pong():
+#     pong="Pong"
+#     return render_template("index.html",pong=pong)
+    
+# @app.route("/system",methods=["GET"])
+# def system_details():
+#     return render_template("index.html",system=stm)
     
 @app.route("/mediainfo/<id>",methods=["GET"])
 def media_details(id):
@@ -74,7 +86,9 @@ def media_details(id):
         
         return render_template("index.html",mypic=mypic,pic_details=pic_details,pic_size_dimensions=pic_size_dimensions)
     else:
-        return("Id out of range")
+        error_text="Id out of range please try id from [ 82831656 , 96146608 , 88382724 , 85925701 , 21327480 ]"
+        return render_template("index.html",error_text=error_text)
+        
     
 if __name__ == "__main__":
 	app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8080)),debug=True)

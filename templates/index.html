@@ -19,7 +19,7 @@
                 <h1 class="heading" align="center">POND5 Test</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row pong">
             <div class="col">
 
                 <h2 align="center">{{pong}}</h2>
@@ -27,7 +27,7 @@
         </div>
         <div align="center" class="row pic">
             <div class="col">
-                <img src="{{mypic}}"></img>
+                <img src="{{mypic}}" alt="media_image"></img>
             </div>
         </div>
         <div align="center" class="row system">
@@ -48,6 +48,16 @@
 
                 <p>{{details}}</p>
                 {%endfor%}
+
+            </div>
+        </div>
+        
+        <div align="center" class="row errors">
+            <div class="col">
+                
+
+                <p>{{error_text}}</p>
+                
 
             </div>
         </div>
